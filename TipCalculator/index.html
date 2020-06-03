@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+  
+ 
+
+    <div id="disDiv">
+
+        <div class="blue" id="header" >
+           TIP CALCULATOR</h2>
+        </div>
+
+
+        <div id="uyari">
+            <p  class ="uyarP" id="uyariP1"></p>
+            <p class="uyarP" id="uyariP2"></p>
+            <p class="uyarP" id="uyariP3"></p>
+           
+        </div>
+      
+
+       
+         <p  class="baslik1" style="font-weight: 600;" >&nbsp &nbsp  How Much Was Your Bill?</p>
+       
+         
+            <div class="billDiv">
+                <div class="dolar"  ></div>
+               
+                <div id="input1" > 
+                    <input type="number"  id="inputBill"  step="0.1"  >
+                </div>
+            </div>
+         <br>
+
+        
+          <p  class="baslik1" style="font-weight: 600;">&nbsp  How Many People Sharing The  Bill?</p>
+           
+            <div class="personDiv">
+                <div class="user"  ></div>
+                <div id="input2" type="number"> 
+                    <input type="number"  id="inputPers"  >
+                </div>   
+            </div>
+  <br>
+ 
+           
+       <p class="baslik1" style="font-weight: 600;">&nbsp &nbsp  How Was Your Service?</p>
+            <div class="sec"> 
+
+                <select name="service" id="select">
+
+                    <option value="" disabled selected hidden>Choose </option>
+                    <option> Great -20%</option>
+                    <option> Good -10%</option>
+                    <option> Bad -2%</option>
+                  </select>
+             </div>
+    
+
+           
+             <div class="btn"> 
+             <button type="button" onclick="hesapla()">Calculate</button>
+            </div>
+
+           
+             <div class="sonuc">
+                <p  class ="sonucP" id="sonucP1"></p>
+                <p class="sonucP" id="sonucP2"></p>
+                <p class="sonucP" id="sonucP3"></p>
+          
+                </div>
+                  </div>
+                
+ 
+  </head>
+<body style="background-color: #45BCDA;" >
+<script>
+
+function hesapla(){
+
+
+  
+    var secilen = document.getElementById("select").selectedIndex;
+    //alert(document.getElementsByTagName("option")[x].value);
+    //document.getElementsByClassName("sonuc").style.visibility = "visible";
+    var fatura = document.getElementById("inputBill").value;
+    var kisiSayi= document.getElementById("inputPers").value;
+
+
+
+    if((inputBill.value.length ==0)&& (inputPers.value.length ==0) &&(secilen == 0)){
+        document.getElementById("uyari").style.backgroundColor ="#F5B7B1";
+
+    document.getElementById("uyariP1").textContent = "Bill Amount Cannot Be Blank " ;
+    document.getElementById("uyariP2").textContent =  "Number Of Users Must Be Grater Than Zero" ;
+    document.getElementById("uyariP3").textContent =  "You Must Select A Service" ;
+
+    
+ /* &&(secilen ==0)*/
+
+   }
+  else if((inputBill.value.length ==0)&& (inputPers.value.length ==0)){
+
+    document.getElementById("uyari").style.backgroundColor ="#F5B7B1";
+
+    document.getElementById("uyariP1").textContent = "Bill Amount Cannot Be Blank " ;
+    document.getElementById("uyariP2").textContent =  "Number Of Users Must Be Grater Than Zero" ;
+    document.getElementById("uyariP3").textContent =  '' ;
+    document.getElementById("uyariP1").style.backgroundColor ="#F5B7B1 ";
+    
+}
+else if((inputBill.value.length ==0)){
+
+     document.getElementById("uyariP1").textContent = "Bill Amount Cannot Be Blank " ;
+     document.getElementById("uyariP2").textContent =  '' ;
+     document.getElementById("uyariP3").textContent =  '' ;
+
+     document.getElementById("uyari").style.backgroundColor ="#F5B7B1 ";
+
+}
+
+else if((inputBill.value.length ==0) &&(secilen==0)){
+
+document.getElementById("uyariP1").textContent = "Bill Amount Cannot Be Blank " ;
+document.getElementById("uyariP2").textContent =  '' ;
+document.getElementById("uyariP3").textContent =   "You Must Select A Service" ;
+
+document.getElementById("uyari").style.backgroundColor ="#F5B7B1 ";
+
+}
+
+else if( (inputPers.value.length == 0)){
+
+ document.getElementById("uyariP2").textContent =  "Number Of Users Must Be Grater Than Zero" ;
+ document.getElementById("uyariP3").textContent =  '' ;
+ document.getElementById("uyariP1").textContent = '' ;
+
+ document.getElementById("uyari").style.backgroundColor ="#F5B7B1 ";
+
+}
+
+else if( (secilen == 0)){
+
+    document.getElementById("uyariP1").textContent = '' ;
+    document.getElementById("uyariP2").textContent =  '' ;
+    document.getElementById("uyariP3").textContent =  "You Must Select A Service" ;
+
+    document.getElementById("uyari").style.backgroundColor ="#F5B7B1 ";
+
+
+}else{
+    document.getElementById("uyariP1").textContent = '' ;
+    document.getElementById("uyariP2").textContent =  '' ;
+    document.getElementById("uyariP3").textContent =  '' ;
+    
+    document.getElementById("uyari").style.backgroundColor ="white";
+    var tipAmunt;
+
+
+if(secilen==1){
+    tipAmunt=0.2;
+
+}else if(secilen==2){
+    tipAmunt=0.1;
+
+}else if(secilen==3){
+    tipAmunt=0.02;
+
+}
+var tipTutar=fatura*tipAmunt;
+
+var total= (fatura*kisiSayi)/10+tipTutar;
+var kisiBasi = total/kisiSayi;
+
+document.getElementById("sonucP1").textContent =  "$Tip Amount: " + tipTutar +".00";
+document.getElementById("sonucP2").textContent =  "$Total Amount :" + total+ ".00";
+document.getElementById("sonucP3").textContent =  "$Each Person Owes :"+kisiBasi+".00" ;
+
+
+
+}
+
+}
+
+
+
+</script>
+    
+
+
+</body>
+</html>
